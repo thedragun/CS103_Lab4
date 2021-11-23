@@ -6,6 +6,7 @@ using namespace std;
 struct shoes {
 	string brand, material, colour;
 	string size, price;
+
 };
 
 int main()
