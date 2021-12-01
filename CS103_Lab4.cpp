@@ -1,36 +1,54 @@
 #include <iostream>
 #include <fstream>
+#include <iostream>
+#include <string>
 
 using namespace std;
 
 struct shoes {
-	string brand, material, colour;
-	string size, price;
-
+	string color, material, size;
+	int price = 0;
 };
 
 int main()
 {
-	shoes inf[6];
+	ofstream file;
 
-	for (int i = 1; i != 5; i++) {
-		cout << "please enter the brand name: ";
-		cin >> inf[i].brand;
-		cout << "Please enter the material: ";
-		cin >> inf[i].material;
-		cout << "Please enter the colour of the shoes: ";
-		cin >> inf[i].colour;
-		cout << "Please enter the size of the shoes: ";
-		cin >> inf[i].size;
-		cout << "please enter the price of the shoes: ";
-		cin >> inf[i].price;
+	shoes stuff[5];
 
+	for (int i = 0; i != 5; i++) {
+		cout << "\nplease enter the color of the shoe: ";
+		cin >> stuff[i].color;
 
-		fstream shoeFile;
-		shoeFile.open("C:\\Users\\weste\\OneDrive\\Desktop\\New folder\\shoeFile.txt", fstream::in | fstream::out | fstream::app);
+		cout << "\nplease enter the material the shoe is made of: ";
+		cin >> stuff[i].material;
 
-		shoeFile << inf[i].brand << "," << inf[i].material << "," << inf[i].colour << "," << inf[i].size << "," << inf[i].price << "\n";
+		cout << "\nplease enter the size of the shoe: ";
+		cin >> stuff[i].size;
 
-		shoeFile.close();
+		cout << "\nplease enter the price of the shoe: ";
+		cin >> stuff[i].price;
 	}
+
+	file.open("C:\\Users\\weste\\source\\repos\\CS103_Lab_4\\shoes.txt");
+
+	for (int i = 0; i != 5; i++) {
+
+		file << stuff[i].color << "," << stuff[i].material << "," << stuff[i].size << "," << stuff[i].price << "\n";
+
+	}
+	file.close();
+
+	string text;
+
+
+	fstream readfile("C:\\Users\\weste\\source\\repos\\CS103_Lab_4\\shoes.txt");
+
+	while (getline(readfile, text)) {
+		cout << text;
+	}
+
+
+	readfile.close();
 }
+
